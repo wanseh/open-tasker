@@ -11,7 +11,7 @@ COPY pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
 
 # Copy app directories
-COPY frontend/ ./frontend/
+COPY apps/frontend/ ./frontend/
 COPY packages/ ./packages/
 
 # Install dependencies

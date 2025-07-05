@@ -392,7 +392,7 @@ NODE_ENV=production
 createdb opentasker
 
 # Run migrations (if using TypeORM)
-cd backend
+cd apps/backend
 pnpm migration:run
 ```
 
@@ -430,7 +430,7 @@ curl https://api.yourdomain.com/health
 
 ```bash
 # Build backend
-cd backend
+cd apps/backend
 pnpm build
 
 # Start production server
@@ -441,7 +441,7 @@ NODE_ENV=production pnpm start:prod
 
 ```bash
 # Build frontend
-cd frontend
+cd apps/frontend
 pnpm build
 
 # Start production server

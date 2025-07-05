@@ -31,7 +31,7 @@ pnpm install
 pnpm dev:backend
 
 # Or directly from backend directory
-cd backend
+cd apps/backend
 pnpm start:dev
 ```
 
@@ -41,7 +41,7 @@ pnpm start:dev
 pnpm dev:frontend
 
 # Or directly from frontend directory
-cd frontend
+cd apps/frontend
 pnpm dev
 ```
 
@@ -88,13 +88,13 @@ docker-compose -f docker-compose.prod.yml up --build
 
 #### Frontend Dependencies
 ```bash
-cd frontend
+cd apps/frontend
 pnpm add <package-name>
 ```
 
 #### Backend Dependencies
 ```bash
-cd backend
+cd apps/backend
 pnpm add <package-name>
 ```
 
@@ -108,7 +108,7 @@ pnpm add <package-name>
 
 #### Backend Tests
 ```bash
-cd backend
+cd apps/backend
 pnpm test
 pnpm test:watch
 pnpm test:e2e
@@ -116,7 +116,7 @@ pnpm test:e2e
 
 #### Frontend Tests
 ```bash
-cd frontend
+cd apps/frontend
 pnpm test
 ```
 
@@ -124,13 +124,13 @@ pnpm test
 
 #### Backend Build
 ```bash
-cd backend
+cd apps/backend
 pnpm build
 ```
 
 #### Frontend Build
 ```bash
-cd frontend
+cd apps/frontend
 pnpm build
 ```
 
@@ -209,7 +209,7 @@ docker exec opentasker-redis redis-cli ping
 ## Environment Variables
 
 ### Backend Environment
-Create `.env` file in backend directory:
+Create `.env` file in apps/backend directory:
 ```env
 NODE_ENV=development
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/opentasker
@@ -219,7 +219,7 @@ API_PORT=3001
 ```
 
 ### Frontend Environment
-Create `.env.local` file in frontend directory:
+Create `.env.local` file in apps/frontend directory:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```

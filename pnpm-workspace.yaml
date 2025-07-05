@@ -1,10 +1,8 @@
 packages:
   - apps/*
+  - packages/*
   - scripts/*
   - docker/*
-  - frontend
-  - backend
-  - packages/*
 
 ignoredBuiltDependencies:
   - '@nestjs/core'

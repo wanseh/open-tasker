@@ -17,7 +17,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/pnpm-lock.yaml ./
 COPY --from=deps /app/pnpm-workspace.yaml ./
-COPY frontend/ ./frontend/
+COPY apps/frontend/ ./frontend/
 COPY packages/ ./packages/
 
 # Copy workspace files to frontend and install dependencies

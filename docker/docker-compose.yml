@@ -40,8 +40,8 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ../backend:/app
-      - /app/node_modules
+      - ../apps/backend:/app/backend
+      - /app/backend/node_modules
     depends_on:
       - postgres
       - redis
@@ -61,7 +61,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ../frontend:/app/frontend
+      - ../apps/frontend:/app/frontend
       - /app/frontend/node_modules
       - /app/frontend/.next
     depends_on:

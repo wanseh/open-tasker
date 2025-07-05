@@ -94,10 +94,10 @@ pnpm test                 # Run all tests
 
 ```bash
 # Frontend dependencies
-cd frontend && pnpm add <package-name>
+cd apps/frontend && pnpm add <package-name>
 
 # Backend dependencies  
-cd backend && pnpm add <package-name>
+cd apps/backend && pnpm add <package-name>
 
 # Shared dependencies
 cd packages/shared-types && pnpm add <package-name>

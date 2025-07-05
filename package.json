@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:frontend": "pnpm --filter frontend dev",
-    "dev:backend": "pnpm --filter backend start:dev",
-    "build:frontend": "pnpm --filter frontend build",
-    "build:backend": "pnpm --filter backend build"
+    "dev:frontend": "pnpm --filter apps/frontend dev",
+    "dev:backend": "pnpm --filter apps/backend start:dev",
+    "build:frontend": "pnpm --filter apps/frontend build",
+    "build:backend": "pnpm --filter apps/backend build"
   },
   "keywords": [],
   "author": "",

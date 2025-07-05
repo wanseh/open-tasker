@@ -1,0 +1,24 @@
+{
+  "name": "@opentasker/eslint-config",
+  "version": "1.0.0",
+  "description": "Shared ESLint configuration for OpenTasker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["eslint", "config", "shared"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.0.0"
+  }
+} 

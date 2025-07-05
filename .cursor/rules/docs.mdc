@@ -1,0 +1,446 @@
+---
+alwaysApply: true
+---
+
+# OpenTasker Project Structure
+
+Always follow this file structure for the OpenTasker project:
+
+```
+opentasker/
+├── apps/
+│   ├── frontend/                 # Next.js app
+│   │   ├── public/
+│   │   │   ├── icons/
+│   │   │   ├── images/
+│   │   │   └── manifest.json
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── ui/           # Reusable UI components
+│   │   │   │   │   ├── Button.tsx
+│   │   │   │   │   ├── Input.tsx
+│   │   │   │   │   ├── Modal.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── layout/       # Layout components
+│   │   │   │   │   ├── Header.tsx
+│   │   │   │   │   ├── Sidebar.tsx
+│   │   │   │   │   └── Footer.tsx
+│   │   │   │   ├── forms/        # Form components
+│   │   │   │   │   ├── LoginForm.tsx
+│   │   │   │   │   ├── TaskForm.tsx
+│   │   │   │   │   └── ProjectForm.tsx
+│   │   │   │   ├── tasks/        # Task-related components
+│   │   │   │   │   ├── TaskCard.tsx
+│   │   │   │   │   ├── TaskList.tsx
+│   │   │   │   │   ├── TaskDetail.tsx
+│   │   │   │   │   └── KanbanBoard.tsx
+│   │   │   │   └── projects/     # Project components
+│   │   │   │       ├── ProjectCard.tsx
+│   │   │   │       ├── ProjectList.tsx
+│   │   │   │       └── ProjectSettings.tsx
+│   │   │   ├── pages/            # Next.js pages
+│   │   │   │   ├── api/          # API routes
+│   │   │   │   │   └── auth/
+│   │   │   │   ├── auth/
+│   │   │   │   │   ├── login.tsx
+│   │   │   │   │   ├── register.tsx
+│   │   │   │   │   └── verify.tsx
+│   │   │   │   ├── dashboard/
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── projects/
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── [id].tsx
+│   │   │   │   ├── tasks/
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── [id].tsx
+│   │   │   │   ├── _app.tsx
+│   │   │   │   ├── _document.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── hooks/            # Custom React hooks
+│   │   │   │   ├── useAuth.ts
+│   │   │   │   ├── useWebSocket.ts
+│   │   │   │   ├── useTasks.ts
+│   │   │   │   └── useProjects.ts
+│   │   │   ├── lib/              # Utility libraries
+│   │   │   │   ├── api.ts        # API client
+│   │   │   │   ├── auth.ts       # Auth utilities
+│   │   │   │   ├── websocket.ts  # WebSocket client
+│   │   │   │   ├── utils.ts      # General utilities
+│   │   │   │   └── constants.ts  # App constants
+│   │   │   ├── store/            # State management
+│   │   │   │   ├── authStore.ts
+│   │   │   │   ├── taskStore.ts
+│   │   │   │   └── projectStore.ts
+│   │   │   ├── styles/           # Global styles
+│   │   │   │   ├── globals.css
+│   │   │   │   └── components.css
+│   │   │   └── types/            # TypeScript types
+│   │   │       ├── auth.ts
+│   │   │       ├── task.ts
+│   │   │       ├── project.ts
+│   │   │       └── api.ts
+│   │   ├── package.json
+│   │   ├── next.config.js
+│   │   ├── tailwind.config.js
+│   │   └── tsconfig.json
+│   │
+│   └── backend/                  # NestJS/Express API
+│       ├── src/
+│       │   ├── auth/             # Authentication module
+│       │   │   ├── auth.controller.ts
+│       │   │   ├── auth.service.ts
+│       │   │   ├── auth.module.ts
+│       │   │   ├── guards/
+│       │   │   │   ├── jwt.guard.ts
+│       │   │   │   └── roles.guard.ts
+│       │   │   ├── strategies/
+│       │   │   │   └── jwt.strategy.ts
+│       │   │   └── dto/
+│       │   │       ├── login.dto.ts
+│       │   │       └── register.dto.ts
+│       │   ├── users/            # Users module
+│       │   │   ├── users.controller.ts
+│       │   │   ├── users.service.ts
+│       │   │   ├── users.module.ts
+│       │   │   ├── entities/
+│       │   │   │   └── user.entity.ts
+│       │   │   └── dto/
+│       │   │       ├── create-user.dto.ts
+│       │   │       └── update-user.dto.ts
+│       │   ├── projects/         # Projects module
+│       │   │   ├── projects.controller.ts
+│       │   │   ├── projects.service.ts
+│       │   │   ├── projects.module.ts
+│       │   │   ├── entities/
+│       │   │   │   └── project.entity.ts
+│       │   │   └── dto/
+│       │   │       ├── create-project.dto.ts
+│       │   │       └── update-project.dto.ts
+│       │   ├── tasks/            # Tasks module
+│       │   │   ├── tasks.controller.ts
+│       │   │   ├── tasks.service.ts
+│       │   │   ├── tasks.module.ts
+│       │   │   ├── entities/
+│       │   │   │   └── task.entity.ts
+│       │   │   └── dto/
+│       │   │       ├── create-task.dto.ts
+│       │   │       └── update-task.dto.ts
+│       │   ├── ai/               # AI integration module
+│       │   │   ├── ai.controller.ts
+│       │   │   ├── ai.service.ts
+│       │   │   ├── ai.module.ts
+│       │   │   └── providers/
+│       │   │       ├── openai.provider.ts
+│       │   │       └── ai.interface.ts
+│       │   ├── websocket/        # WebSocket module
+│       │   │   ├── websocket.gateway.ts
+│       │   │   └── websocket.module.ts
+│       │   ├── database/         # Database configuration
+│       │   │   ├── migrations/
+│       │   │   ├── seeds/
+│       │   │   └── database.module.ts
+│       │   ├── common/           # Shared utilities
+│       │   │   ├── decorators/
+│       │   │   ├── filters/
+│       │   │   ├── guards/
+│       │   │   ├── interceptors/
+│       │   │   ├── pipes/
+│       │   │   └── utils/
+│       │   ├── config/           # Configuration
+│       │   │   ├── database.config.ts
+│       │   │   ├── jwt.config.ts
+│       │   │   └── app.config.ts
+│       │   ├── app.controller.ts
+│       │   ├── app.service.ts
+│       │   ├── app.module.ts
+│       │   └── main.ts
+│       ├── test/                 # Test files
+│       │   ├── unit/
+│       │   ├── integration/
+│       │   └── e2e/
+│       ├── package.json
+│       ├── nest-cli.json
+│       └── tsconfig.json
+│
+├── packages/                     # Shared packages
+│   ├── shared-types/            # Shared TypeScript types
+│   │   ├── src/
+│   │   │   ├── auth.ts
+│   │   │   ├── task.ts
+│   │   │   ├── project.ts
+│   │   │   └── index.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   └── eslint-config/           # Shared ESLint config
+│       ├── index.js
+│       └── package.json
+│
+├── docker/                      # Docker configurations
+│   ├── Dockerfile.frontend
+│   ├── Dockerfile.backend
+│   ├── docker-compose.yml
+│   └── docker-compose.prod.yml
+│
+├── .github/                     # GitHub Actions
+│   └── workflows/
+│       ├── ci.yml
+│       ├── deploy-frontend.yml
+│       └── deploy-backend.yml
+│
+├── docs/                        # Documentation
+│   ├── api/
+│   │   └── README.md
+│   ├── deployment/
+│   │   └── README.md
+│   ├── development/
+│   │   └── README.md
+│   └── user-guide/
+│       └── README.md
+│
+├── scripts/                     # Utility scripts
+│   ├── setup-dev.sh
+│   ├── backup-db.sh
+│   └── deploy.sh
+│
+├── .gitignore
+├── .env.example
+├── package.json                 # Root package.json
+├── turbo.json                   # Turborepo config
+├── README.md
+└── LICENSE
+```
+
+## Key Principles:
+
+1. **Monorepo Structure**: Use `apps/` for applications and `packages/` for shared libraries
+2. **Frontend Organization**: Group components by feature (ui, layout, forms, tasks, projects)
+3. **Backend Modules**: Organize by domain (auth, users, projects, tasks, ai, websocket)
+4. **Shared Types**: Keep common TypeScript interfaces in `packages/shared-types`
+5. **Configuration**: Separate config files for different environments
+6. **Documentation**: Maintain comprehensive docs for API, deployment, and development
+
+
+
+
+# OpenTasker Project Structure
+
+Always follow this file structure for the OpenTasker project:
+
+```
+opentasker/
+├── apps/
+│   ├── frontend/                 # Next.js app
+│   │   ├── public/
+│   │   │   ├── icons/
+│   │   │   ├── images/
+│   │   │   └── manifest.json
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── ui/           # Reusable UI components
+│   │   │   │   │   ├── Button.tsx
+│   │   │   │   │   ├── Input.tsx
+│   │   │   │   │   ├── Modal.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── layout/       # Layout components
+│   │   │   │   │   ├── Header.tsx
+│   │   │   │   │   ├── Sidebar.tsx
+│   │   │   │   │   └── Footer.tsx
+│   │   │   │   ├── forms/        # Form components
+│   │   │   │   │   ├── LoginForm.tsx
+│   │   │   │   │   ├── TaskForm.tsx
+│   │   │   │   │   └── ProjectForm.tsx
+│   │   │   │   ├── tasks/        # Task-related components
+│   │   │   │   │   ├── TaskCard.tsx
+│   │   │   │   │   ├── TaskList.tsx
+│   │   │   │   │   ├── TaskDetail.tsx
+│   │   │   │   │   └── KanbanBoard.tsx
+│   │   │   │   └── projects/     # Project components
+│   │   │   │       ├── ProjectCard.tsx
+│   │   │   │       ├── ProjectList.tsx
+│   │   │   │       └── ProjectSettings.tsx
+│   │   │   ├── pages/            # Next.js pages
+│   │   │   │   ├── api/          # API routes
+│   │   │   │   │   └── auth/
+│   │   │   │   ├── auth/
+│   │   │   │   │   ├── login.tsx
+│   │   │   │   │   ├── register.tsx
+│   │   │   │   │   └── verify.tsx
+│   │   │   │   ├── dashboard/
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── projects/
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── [id].tsx
+│   │   │   │   ├── tasks/
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── [id].tsx
+│   │   │   │   ├── _app.tsx
+│   │   │   │   ├── _document.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── hooks/            # Custom React hooks
+│   │   │   │   ├── useAuth.ts
+│   │   │   │   ├── useWebSocket.ts
+│   │   │   │   ├── useTasks.ts
+│   │   │   │   └── useProjects.ts
+│   │   │   ├── lib/              # Utility libraries
+│   │   │   │   ├── api.ts        # API client
+│   │   │   │   ├── auth.ts       # Auth utilities
+│   │   │   │   ├── websocket.ts  # WebSocket client
+│   │   │   │   ├── utils.ts      # General utilities
+│   │   │   │   └── constants.ts  # App constants
+│   │   │   ├── store/            # State management
+│   │   │   │   ├── authStore.ts
+│   │   │   │   ├── taskStore.ts
+│   │   │   │   └── projectStore.ts
+│   │   │   ├── styles/           # Global styles
+│   │   │   │   ├── globals.css
+│   │   │   │   └── components.css
+│   │   │   └── types/            # TypeScript types
+│   │   │       ├── auth.ts
+│   │   │       ├── task.ts
+│   │   │       ├── project.ts
+│   │   │       └── api.ts
+│   │   ├── package.json
+│   │   ├── next.config.js
+│   │   ├── tailwind.config.js
+│   │   └── tsconfig.json
+│   │
+│   └── backend/                  # NestJS/Express API
+│       ├── src/
+│       │   ├── auth/             # Authentication module
+│       │   │   ├── auth.controller.ts
+│       │   │   ├── auth.service.ts
+│       │   │   ├── auth.module.ts
+│       │   │   ├── guards/
+│       │   │   │   ├── jwt.guard.ts
+│       │   │   │   └── roles.guard.ts
+│       │   │   ├── strategies/
+│       │   │   │   └── jwt.strategy.ts
+│       │   │   └── dto/
+│       │   │       ├── login.dto.ts
+│       │   │       └── register.dto.ts
+│       │   ├── users/            # Users module
+│       │   │   ├── users.controller.ts
+│       │   │   ├── users.service.ts
+│       │   │   ├── users.module.ts
+│       │   │   ├── entities/
+│       │   │   │   └── user.entity.ts
+│       │   │   └── dto/
+│       │   │       ├── create-user.dto.ts
+│       │   │       └── update-user.dto.ts
+│       │   ├── projects/         # Projects module
+│       │   │   ├── projects.controller.ts
+│       │   │   ├── projects.service.ts
+│       │   │   ├── projects.module.ts
+│       │   │   ├── entities/
+│       │   │   │   └── project.entity.ts
+│       │   │   └── dto/
+│       │   │       ├── create-project.dto.ts
+│       │   │       └── update-project.dto.ts
+│       │   ├── tasks/            # Tasks module
+│       │   │   ├── tasks.controller.ts
+│       │   │   ├── tasks.service.ts
+│       │   │   ├── tasks.module.ts
+│       │   │   ├── entities/
+│       │   │   │   └── task.entity.ts
+│       │   │   └── dto/
+│       │   │       ├── create-task.dto.ts
+│       │   │       └── update-task.dto.ts
+│       │   ├── ai/               # AI integration module
+│       │   │   ├── ai.controller.ts
+│       │   │   ├── ai.service.ts
+│       │   │   ├── ai.module.ts
+│       │   │   └── providers/
+│       │   │       ├── openai.provider.ts
+│       │   │       └── ai.interface.ts
+│       │   ├── websocket/        # WebSocket module
+│       │   │   ├── websocket.gateway.ts
+│       │   │   └── websocket.module.ts
+│       │   ├── database/         # Database configuration
+│       │   │   ├── migrations/
+│       │   │   ├── seeds/
+│       │   │   └── database.module.ts
+│       │   ├── common/           # Shared utilities
+│       │   │   ├── decorators/
+│       │   │   ├── filters/
+│       │   │   ├── guards/
+│       │   │   ├── interceptors/
+│       │   │   ├── pipes/
+│       │   │   └── utils/
+│       │   ├── config/           # Configuration
+│       │   │   ├── database.config.ts
+│       │   │   ├── jwt.config.ts
+│       │   │   └── app.config.ts
+│       │   ├── app.controller.ts
+│       │   ├── app.service.ts
+│       │   ├── app.module.ts
+│       │   └── main.ts
+│       ├── test/                 # Test files
+│       │   ├── unit/
+│       │   ├── integration/
+│       │   └── e2e/
+│       ├── package.json
+│       ├── nest-cli.json
+│       └── tsconfig.json
+│
+├── packages/                     # Shared packages
+│   ├── shared-types/            # Shared TypeScript types
+│   │   ├── src/
+│   │   │   ├── auth.ts
+│   │   │   ├── task.ts
+│   │   │   ├── project.ts
+│   │   │   └── index.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   └── eslint-config/           # Shared ESLint config
+│       ├── index.js
+│       └── package.json
+│
+├── docker/                      # Docker configurations
+│   ├── Dockerfile.frontend
+│   ├── Dockerfile.backend
+│   ├── docker-compose.yml
+│   └── docker-compose.prod.yml
+│
+├── .github/                     # GitHub Actions
+│   └── workflows/
+│       ├── ci.yml
+│       ├── deploy-frontend.yml
+│       └── deploy-backend.yml
+│
+├── docs/                        # Documentation
+│   ├── api/
+│   │   └── README.md
+│   ├── deployment/
+│   │   └── README.md
+│   ├── development/
+│   │   └── README.md
+│   └── user-guide/
+│       └── README.md
+│
+├── scripts/                     # Utility scripts
+│   ├── setup-dev.sh
+│   ├── backup-db.sh
+│   └── deploy.sh
+│
+├── .gitignore
+├── .env.example
+├── package.json                 # Root package.json
+├── turbo.json                   # Turborepo config
+├── README.md
+└── LICENSE
+```
+
+## Key Principles:
+
+1. **Monorepo Structure**: Use `apps/` for applications and `packages/` for shared libraries
+2. **Frontend Organization**: Group components by feature (ui, layout, forms, tasks, projects)
+3. **Backend Modules**: Organize by domain (auth, users, projects, tasks, ai, websocket)
+4. **Shared Types**: Keep common TypeScript interfaces in `packages/shared-types`
+5. **Configuration**: Separate config files for different environments
+6. **Documentation**: Maintain comprehensive docs for API, deployment, and development
+
+
+
+

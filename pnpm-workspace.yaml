@@ -1,8 +1,13 @@
 packages:
+  - apps/*
+  - scripts/*
+  - docker/*
   - frontend
   - backend
+  - packages/*
 
 ignoredBuiltDependencies:
   - '@nestjs/core'
   - es5-ext
   - fsevents
+  - unrs-resolver

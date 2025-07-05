@@ -6,158 +6,341 @@ OpenTasker is a modern task management and project collaboration platform design
 
 ## Getting Started
 
-### 1. Creating an Account
+### Creating an Account
 
-1. Visit the OpenTasker homepage
-2. Click "Sign Up" or "Get Started"
-3. Fill in your information:
+1. Visit the OpenTasker application
+2. Click "Sign Up" or "Register"
+3. Fill in your details:
    - Email address
-   - Username
    - Password
-   - First and last name (optional)
+   - Full name
 4. Click "Create Account"
-5. Verify your email address
+5. Verify your email (if required)
 
-### 2. First Login
+### Logging In
 
-1. Enter your email and password
-2. You'll be redirected to your dashboard
-3. Complete your profile setup
+1. Click "Sign In" or "Login"
+2. Enter your email and password
+3. Click "Sign In"
 
-## Dashboard Overview
+## Dashboard
 
-### Main Dashboard
+### Overview
+The dashboard provides a quick overview of your tasks and projects:
 
-The dashboard provides an overview of your work:
-
-- **My Tasks**: Tasks assigned to you
-- **Recent Projects**: Projects you're working on
-- **Activity Feed**: Recent updates and changes
-- **Quick Actions**: Create new tasks, projects, or invite team members
+- **Today's Tasks** - Tasks due today
+- **Upcoming Tasks** - Tasks due in the next 7 days
+- **Recent Projects** - Projects you've worked on recently
+- **Quick Stats** - Task completion statistics
 
 ### Navigation
-
-- **Dashboard**: Overview and quick access
-- **Projects**: Manage your projects
-- **Tasks**: View and manage all tasks
-- **Team**: Manage team members and permissions
-- **Settings**: Account and workspace settings
+- **Dashboard** - Main overview page
+- **Projects** - Manage your projects
+- **Tasks** - View and manage all tasks
+- **Calendar** - Calendar view of tasks
+- **Settings** - Account and app settings
 
 ## Projects
 
 ### Creating a Project
 
-1. Click "New Project" from the dashboard or projects page
+1. Click "New Project" or the "+" button
 2. Fill in project details:
-   - Project name
-   - Description
-   - Tags (optional)
-3. Set project settings:
-   - Public/private access
-   - Enable time tracking
-   - File upload settings
-4. Click "Create Project"
+   - **Name** - Project name
+   - **Description** - Project description (optional)
+   - **Color** - Choose a color for the project
+3. Click "Create Project"
 
 ### Managing Projects
 
-#### Project Settings
+#### View Project
+- Click on a project to view its details
+- See all tasks in the project
+- View project statistics
 
-- **General**: Basic project information
-- **Members**: Add/remove team members
-- **Permissions**: Set member roles and permissions
-- **Integrations**: Connect external tools
-- **Archive**: Archive or delete project
+#### Edit Project
+1. Click the three dots menu on a project
+2. Select "Edit"
+3. Update project details
+4. Click "Save"
 
-#### Project Roles
+#### Delete Project
+1. Click the three dots menu on a project
+2. Select "Delete"
+3. Confirm deletion
 
-- **Owner**: Full control over the project
-- **Admin**: Can manage tasks and members
-- **Member**: Can create and edit tasks
-- **Viewer**: Read-only access
+**Note:** Deleting a project will also delete all tasks in that project.
 
 ## Tasks
 
-### Creating Tasks
+### Creating a Task
 
-1. From a project or the main tasks page, click "New Task"
+#### Quick Add
+1. Click the "+" button in the task list
+2. Type the task title
+3. Press Enter
+
+#### Detailed Add
+1. Click "New Task" or the "+" button
 2. Fill in task details:
-   - Title
-   - Description
-   - Assignee
-   - Due date
-   - Priority
-   - Tags
+   - **Title** - Task name
+   - **Description** - Detailed description (optional)
+   - **Project** - Select a project
+   - **Priority** - Low, Medium, High, or Urgent
+   - **Due Date** - When the task is due
+   - **Assignee** - Who is responsible (if team feature is enabled)
 3. Click "Create Task"
 
-### Task Management
+### Managing Tasks
 
-#### Task Status
+#### View Task Details
+- Click on a task to view its full details
+- See description, comments, attachments, and history
+
+#### Edit Task
+1. Click on a task to open details
+2. Click "Edit"
+3. Update task information
+4. Click "Save"
+
+#### Move Tasks (Kanban View)
+- Drag and drop tasks between columns:
+  - **To Do** - Tasks not started
+  - **In Progress** - Tasks being worked on
+  - **Done** - Completed tasks
+
+#### Delete Task
+1. Open task details
+2. Click "Delete"
+3. Confirm deletion
+
+### Task Status
 
 Tasks can have the following statuses:
 
-- **To Do**: Not started
-- **In Progress**: Currently being worked on
-- **Review**: Ready for review
-- **Done**: Completed
-- **Archived**: No longer active
+- **To Do** - Task is pending
+- **In Progress** - Task is being worked on
+- **Done** - Task is completed
+- **Archived** - Task is archived (hidden from main view)
 
-#### Task Priority
+### Task Priority
 
-- **Low**: Not urgent
-- **Medium**: Normal priority
-- **High**: Important
-- **Urgent**: Critical, needs immediate attention
+Tasks can have different priority levels:
 
-#### Task Actions
+- **Low** - Not urgent
+- **Medium** - Normal priority
+- **High** - Important
+- **Urgent** - Critical, needs immediate attention
 
-- **Edit**: Modify task details
-- **Assign**: Change assignee
-- **Move**: Move to different project
-- **Duplicate**: Create a copy
-- **Archive**: Move to archive
-- **Delete**: Permanently remove
+## Comments and Collaboration
 
-### Task Details
+### Adding Comments
 
-#### Comments
+1. Open a task
+2. Scroll to the comments section
+3. Type your comment
+4. Click "Add Comment"
 
-- Add comments to discuss task details
-- Mention team members using @username
-- Attach files to comments
+### Mentioning Users
 
-#### Attachments
+Type "@" followed by a username to mention someone in a comment.
 
-- Upload files directly to tasks
-- Supported formats: images, documents, videos
-- Maximum file size: 10MB
+### Attachments
 
-#### Time Tracking
+#### Upload Files
+1. Open a task
+2. Click "Attach File"
+3. Select files from your computer
+4. Click "Upload"
 
-- Start/stop time tracking
-- Log time manually
-- View time reports
+#### Supported File Types
+- Images (JPG, PNG, GIF)
+- Documents (PDF, DOC, DOCX)
+- Spreadsheets (XLS, XLSX)
+- Text files (TXT)
 
-## Team Collaboration
+## Search and Filters
 
-### Inviting Team Members
+### Searching Tasks
 
-1. Go to Team settings
-2. Click "Invite Member"
-3. Enter email address
-4. Select role
-5. Send invitation
+1. Use the search bar at the top
+2. Type keywords to search task titles and descriptions
+3. Results will show matching tasks
 
-### Team Roles
+### Filtering Tasks
 
-- **Admin**: Full workspace control
-- **Member**: Can create projects and tasks
-- **Viewer**: Read-only access
+Use the filter options to narrow down tasks:
 
-### Communication
+- **Status** - Filter by task status
+- **Priority** - Filter by priority level
+- **Project** - Filter by project
+- **Assignee** - Filter by who is assigned
+- **Due Date** - Filter by due date range
 
-- **Comments**: Discuss tasks and projects
-- **Mentions**: Use @username to notify team members
-- **Activity Feed**: See recent updates
+### Advanced Search
+
+Use search operators:
+- `project:"Project Name"` - Search in specific project
+- `priority:high` - Search high priority tasks
+- `due:today` - Search tasks due today
+- `due:week` - Search tasks due this week
+
+## Calendar View
+
+### Viewing Calendar
+
+1. Click "Calendar" in the navigation
+2. See tasks displayed on a calendar
+3. Tasks are color-coded by project
+
+### Calendar Features
+
+- **Month View** - See all tasks in a month
+- **Week View** - Focus on current week
+- **Day View** - Detailed view of a single day
+- **Agenda View** - List view of upcoming tasks
+
+### Adding Tasks from Calendar
+
+1. Click on a date in the calendar
+2. Click "Add Task"
+3. Fill in task details
+4. The due date will be automatically set
+
+## Settings
+
+### Account Settings
+
+1. Click your profile picture
+2. Select "Settings"
+3. Update your information:
+   - **Name** - Your full name
+   - **Email** - Email address
+   - **Password** - Change password
+   - **Profile Picture** - Upload a profile picture
+
+### App Settings
+
+#### Notifications
+- **Email Notifications** - Receive email updates
+- **Push Notifications** - Browser notifications
+- **Task Reminders** - Get reminded about due tasks
+
+#### Display
+- **Theme** - Light or dark mode
+- **Language** - App language
+- **Time Zone** - Your time zone
+
+#### Privacy
+- **Data Sharing** - Control data sharing settings
+- **Account Deletion** - Delete your account
+
+## Keyboard Shortcuts
+
+### Navigation
+- `Ctrl/Cmd + K` - Quick search
+- `Ctrl/Cmd + N` - New task
+- `Ctrl/Cmd + P` - New project
+- `Ctrl/Cmd + ,` - Open settings
+
+### Task Management
+- `Enter` - Complete task
+- `Delete` - Delete task
+- `E` - Edit task
+- `C` - Add comment
+
+### Navigation
+- `1` - Go to Dashboard
+- `2` - Go to Projects
+- `3` - Go to Tasks
+- `4` - Go to Calendar
+
+## Mobile App
+
+### Features
+- All desktop features available
+- Touch-optimized interface
+- Offline support
+- Push notifications
+
+### Getting Started
+1. Download the mobile app
+2. Log in with your account
+3. Start managing tasks on the go
+
+## Tips and Best Practices
+
+### Task Management
+- Use clear, descriptive task titles
+- Set realistic due dates
+- Use priority levels effectively
+- Break large tasks into smaller subtasks
+
+### Project Organization
+- Use consistent naming conventions
+- Color-code projects for easy identification
+- Keep project descriptions up to date
+- Archive completed projects
+
+### Collaboration
+- Use comments to communicate with team members
+- Mention users when you need their attention
+- Attach relevant files to tasks
+- Keep task descriptions detailed
+
+### Productivity
+- Review your dashboard daily
+- Use the calendar view for planning
+- Set up notifications for important tasks
+- Use search and filters to find tasks quickly
+
+## Troubleshooting
+
+### Common Issues
+
+#### Can't Log In
+- Check your email and password
+- Try resetting your password
+- Contact support if issues persist
+
+#### Tasks Not Saving
+- Check your internet connection
+- Refresh the page
+- Try logging out and back in
+
+#### Files Not Uploading
+- Check file size (max 10MB)
+- Ensure file type is supported
+- Try uploading one file at a time
+
+#### Notifications Not Working
+- Check browser notification settings
+- Ensure you're logged in
+- Check your email spam folder
+
+### Getting Help
+
+- **Help Center** - Visit the help center for detailed guides
+- **Contact Support** - Email support for technical issues
+- **Community Forum** - Ask questions in the community
+- **Feedback** - Submit feature requests and bug reports
+
+## Keyboard Shortcuts Reference
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl/Cmd + K` | Quick search |
+| `Ctrl/Cmd + N` | New task |
+| `Ctrl/Cmd + P` | New project |
+| `Ctrl/Cmd + ,` | Settings |
+| `Enter` | Complete task |
+| `Delete` | Delete task |
+| `E` | Edit task |
+| `C` | Add comment |
+| `1` | Dashboard |
+| `2` | Projects |
+| `3` | Tasks |
+| `4` | Calendar |
 
 ## Advanced Features
 
@@ -187,102 +370,6 @@ Set up automated workflows:
 - **Status Updates**: Automatic status changes
 - **Notifications**: Custom notification rules
 - **Reporting**: Automated reports and summaries
-
-## Keyboard Shortcuts
-
-### Navigation
-
-- `G + D`: Go to Dashboard
-- `G + P`: Go to Projects
-- `G + T`: Go to Tasks
-- `G + S`: Go to Settings
-
-### Actions
-
-- `N + T`: New Task
-- `N + P`: New Project
-- `S`: Search
-- `?`: Show all shortcuts
-
-### Task Management
-
-- `E`: Edit task
-- `A`: Assign task
-- `C`: Add comment
-- `M`: Move task
-
-## Mobile App
-
-### Features
-
-- View and edit tasks
-- Create new tasks
-- Add comments
-- Upload photos
-- Receive notifications
-- Offline support
-
-### Getting Started
-
-1. Download the app from App Store or Google Play
-2. Sign in with your account
-3. Sync your data
-4. Start managing tasks on the go
-
-## Tips and Best Practices
-
-### Task Organization
-
-1. **Use Clear Titles**: Make task titles descriptive
-2. **Add Descriptions**: Provide context and requirements
-3. **Set Realistic Due Dates**: Don't overcommit
-4. **Use Tags**: Organize tasks by category
-5. **Regular Updates**: Keep task status current
-
-### Project Management
-
-1. **Break Down Large Tasks**: Create subtasks for complex work
-2. **Regular Reviews**: Weekly project reviews
-3. **Clear Communication**: Use comments for discussions
-4. **Document Decisions**: Keep important information in project descriptions
-
-### Team Collaboration
-
-1. **Set Expectations**: Clear roles and responsibilities
-2. **Regular Check-ins**: Daily or weekly standups
-3. **Use Mentions**: Notify relevant team members
-4. **Celebrate Wins**: Acknowledge completed work
-
-## Troubleshooting
-
-### Common Issues
-
-#### Can't Access Project
-
-- Check if you have the correct permissions
-- Contact project owner for access
-- Verify you're logged in with the correct account
-
-#### Task Not Updating
-
-- Refresh the page
-- Check your internet connection
-- Clear browser cache
-- Try logging out and back in
-
-#### Notifications Not Working
-
-- Check notification settings
-- Verify email address is correct
-- Check spam folder
-- Update notification preferences
-
-### Getting Help
-
-- **Help Center**: Comprehensive documentation
-- **Community Forum**: Ask questions and share tips
-- **Support Email**: contact@opentasker.com
-- **Live Chat**: Available during business hours
 
 ## Account Settings
 

@@ -7,76 +7,55 @@ The OpenTasker API is a RESTful service built with NestJS that provides endpoint
 ## Base URL
 
 - Development: `http://localhost:3001`
-- Production: `https://api.opentasker.com`
+- Production: `https://api.yourdomain.com`
 
 ## Authentication
 
-The API uses JWT (JSON Web Tokens) for authentication. Include the token in the Authorization header:
+The API uses JWT (JSON Web Tokens) for authentication.
 
-```
-Authorization: Bearer <your-jwt-token>
-```
+### Login
+```http
+POST /auth/login
+Content-Type: application/json
 
-## Endpoints
-
-### Authentication
-
-#### POST /auth/register
-Register a new user account.
-
-**Request Body:**
-```json
-{
-  "email": "user@example.com",
-  "username": "username",
-  "password": "password123",
-  "firstName": "John",
-  "lastName": "Doe"
-}
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "user": {
-      "id": "uuid",
-      "email": "user@example.com",
-      "username": "username",
-      "firstName": "John",
-      "lastName": "Doe",
-      "role": "user",
-      "isVerified": false,
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
-    },
-    "accessToken": "jwt-token",
-    "refreshToken": "refresh-token"
-  }
-}
-```
-
-#### POST /auth/login
-Authenticate a user and receive access tokens.
-
-**Request Body:**
-```json
 {
   "email": "user@example.com",
   "password": "password123"
 }
 ```
 
-#### POST /auth/refresh
-Refresh an access token using a refresh token.
-
-**Request Body:**
+**Response:**
 ```json
 {
-  "refreshToken": "refresh-token"
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 1,
+    "email": "user@example.com",
+    "name": "John Doe"
+  }
 }
 ```
+
+### Register
+```http
+POST /auth/register
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "name": "John Doe"
+}
+```
+
+### Using Authentication
+
+Include the JWT token in the Authorization header:
+```http
+Authorization: Bearer <your-jwt-token>
+```
+
+## Endpoints
 
 ### Users
 

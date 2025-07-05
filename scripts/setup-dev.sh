@@ -38,7 +38,7 @@ pnpm --filter @opentasker/shared-types build
 # Copy environment file if it doesn't exist
 if [ ! -f .env ]; then
     echo "📝 Creating .env file from .env.example..."
-    cp .env.example .env
+    cd .. && cp .env.example .env
     echo "⚠️  Please update .env file with your configuration"
 fi
 

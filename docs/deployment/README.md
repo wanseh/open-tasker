@@ -349,3 +349,359 @@ docker-compose -f docker-compose.prod.yml up -d --force-recreate backend
 4. Optimize database queries
 5. Use connection pooling
 6. Enable HTTP/2 
+
+## Production Deployment
+
+### Prerequisites
+- Docker & Docker Compose
+- PostgreSQL 15+ (or managed database)
+- Redis 7+ (or managed cache)
+- Domain name and SSL certificate
+- Reverse proxy (nginx, traefik, etc.)
+
+### Environment Setup
+
+#### 1. Environment Variables
+
+Create `.env` file in the root directory:
+
+```env
+# Database
+DATABASE_URL=postgresql://username:password@host:5432/opentasker
+REDIS_URL=redis://host:6379
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key-here
+JWT_EXPIRES_IN=7d
+
+# API
+API_PORT=3001
+API_HOST=0.0.0.0
+
+# Frontend
+NEXT_PUBLIC_API_URL=https://api.yourdomain.com
+
+# Environment
+NODE_ENV=production
+```
+
+#### 2. Database Setup
+
+```bash
+# Create database
+createdb opentasker
+
+# Run migrations (if using TypeORM)
+cd backend
+pnpm migration:run
+```
+
+### Docker Production Deployment
+
+#### 1. Build Production Images
+
+```bash
+cd docker
+docker-compose -f docker-compose.prod.yml build
+```
+
+#### 2. Start Production Services
+
+```bash
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+#### 3. Check Services
+
+```bash
+# Check all containers
+docker ps
+
+# Check logs
+docker-compose -f docker-compose.prod.yml logs -f
+
+# Test API
+curl https://api.yourdomain.com/health
+```
+
+### Manual Deployment
+
+#### 1. Backend Deployment
+
+```bash
+# Build backend
+cd backend
+pnpm build
+
+# Start production server
+NODE_ENV=production pnpm start:prod
+```
+
+#### 2. Frontend Deployment
+
+```bash
+# Build frontend
+cd frontend
+pnpm build
+
+# Start production server
+pnpm start
+```
+
+### Reverse Proxy Configuration
+
+#### Nginx Example
+
+```nginx
+# Frontend
+server {
+    listen 80;
+    server_name yourdomain.com;
+    
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+# Backend API
+server {
+    listen 80;
+    server_name api.yourdomain.com;
+    
+    location / {
+        proxy_pass http://localhost:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### SSL Configuration
+
+#### Using Let's Encrypt
+
+```bash
+# Install certbot
+sudo apt install certbot python3-certbot-nginx
+
+# Get SSL certificate
+sudo certbot --nginx -d yourdomain.com -d api.yourdomain.com
+```
+
+### Monitoring & Logging
+
+#### 1. Health Checks
+
+```bash
+# API health check
+curl https://api.yourdomain.com/health
+
+# Frontend health check
+curl https://yourdomain.com
+```
+
+#### 2. Log Monitoring
+
+```bash
+# View application logs
+docker-compose -f docker-compose.prod.yml logs -f backend
+docker-compose -f docker-compose.prod.yml logs -f frontend
+
+# View nginx logs
+sudo tail -f /var/log/nginx/access.log
+sudo tail -f /var/log/nginx/error.log
+```
+
+#### 3. Database Monitoring
+
+```bash
+# Check database connections
+docker exec opentasker-postgres psql -U postgres -d opentasker -c "SELECT count(*) FROM pg_stat_activity;"
+
+# Check database size
+docker exec opentasker-postgres psql -U postgres -d opentasker -c "SELECT pg_size_pretty(pg_database_size('opentasker'));"
+```
+
+### Backup Strategy
+
+#### 1. Database Backup
+
+```bash
+# Create backup script
+cat > backup-db.sh << 'EOF'
+#!/bin/bash
+DATE=$(date +%Y%m%d_%H%M%S)
+docker exec opentasker-postgres pg_dump -U postgres opentasker > backup_${DATE}.sql
+gzip backup_${DATE}.sql
+EOF
+
+chmod +x backup-db.sh
+
+# Run backup
+./backup-db.sh
+```
+
+#### 2. Application Backup
+
+```bash
+# Backup application data
+tar -czf app-backup-$(date +%Y%m%d).tar.gz \
+  --exclude=node_modules \
+  --exclude=.git \
+  --exclude=.next \
+  --exclude=dist \
+  .
+```
+
+### Scaling
+
+#### 1. Horizontal Scaling
+
+```bash
+# Scale backend services
+docker-compose -f docker-compose.prod.yml up -d --scale backend=3
+
+# Scale frontend services
+docker-compose -f docker-compose.prod.yml up -d --scale frontend=2
+```
+
+#### 2. Load Balancer Configuration
+
+```nginx
+upstream backend {
+    server localhost:3001;
+    server localhost:3002;
+    server localhost:3003;
+}
+
+upstream frontend {
+    server localhost:3000;
+    server localhost:3004;
+}
+```
+
+### Security
+
+#### 1. Firewall Configuration
+
+```bash
+# Allow only necessary ports
+sudo ufw allow 22    # SSH
+sudo ufw allow 80    # HTTP
+sudo ufw allow 443   # HTTPS
+sudo ufw enable
+```
+
+#### 2. Environment Security
+
+```bash
+# Use strong passwords
+# Store secrets in environment variables
+# Use secrets management (Docker secrets, Kubernetes secrets, etc.)
+```
+
+### Performance Optimization
+
+#### 1. Database Optimization
+
+```sql
+-- Add indexes for frequently queried columns
+CREATE INDEX idx_tasks_user_id ON tasks(user_id);
+CREATE INDEX idx_tasks_status ON tasks(status);
+CREATE INDEX idx_tasks_created_at ON tasks(created_at);
+```
+
+#### 2. Caching Strategy
+
+```bash
+# Redis configuration for caching
+# Configure application-level caching
+# Use CDN for static assets
+```
+
+### Troubleshooting
+
+#### Common Issues
+
+1. **Database Connection Issues**
+```bash
+# Check database status
+docker exec opentasker-postgres pg_isready -U postgres
+
+# Check connection string
+echo $DATABASE_URL
+```
+
+2. **Memory Issues**
+```bash
+# Check memory usage
+docker stats
+
+# Increase memory limits in docker-compose
+services:
+  backend:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+```
+
+3. **SSL Issues**
+```bash
+# Check SSL certificate
+openssl s_client -connect yourdomain.com:443
+
+# Renew certificate
+sudo certbot renew
+```
+
+### CI/CD Pipeline
+
+#### GitHub Actions Example
+
+```yaml
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build and deploy
+        run: |
+          cd docker
+          docker-compose -f docker-compose.prod.yml build
+          docker-compose -f docker-compose.prod.yml up -d
+```
+
+### Maintenance
+
+#### Regular Tasks
+
+1. **Weekly**
+   - Check logs for errors
+   - Monitor disk space
+   - Review security updates
+
+2. **Monthly**
+   - Update dependencies
+   - Review performance metrics
+   - Test backup restoration
+
+3. **Quarterly**
+   - Security audit
+   - Performance optimization
+   - Infrastructure review 

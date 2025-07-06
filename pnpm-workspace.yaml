@@ -1,11 +1,11 @@
 packages:
   - apps/*
   - packages/*
-  - scripts/*
-  - docker/*
 
 ignoredBuiltDependencies:
   - '@nestjs/core'
+  - '@tailwindcss/oxide'
   - es5-ext
   - fsevents
+  - sharp
   - unrs-resolver
